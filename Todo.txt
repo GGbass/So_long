@@ -1,0 +1,26 @@
+find pacman sprites  done
+load those sprites 
+
+void *mlx_xpm_file_to_image(void *mlx_ptr, char *filename, int *width, int *height);
+
+for render sprites
+
+int mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y);
+
+check if if it's a valid map
+
+movementss...
+
+
+1.-  assign game sprites  to variable t_sprites;
+	1.1 exit and unlock exit is missing
+2.- make and check for an available map;
+	2.1 open an available map starting pacman level ;
+	2.2 read a and check for available map
+3.-assign character sprites, collectables and exit;
+	3.1 make charactrt movements
+	3.2 make door  unlock and close the game after gather all  dots
+
+
+restar first make a variable checkpoint defaults values
+call default
