@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:52:48 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/12 19:26:34 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/14 19:20:26 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,39 @@ int	keys_press(int key, t_data *data)
 	ft_printf("Key ; %d\n", key);
 	return (0);
 }
-
-int	main(int argc, char **argv)
+void	game_init(t_data *data)
 {
-	t_data *data;
-/* 
-	(void)argv;
-	(void)argc; */
-	data = ft_calloc(1, sizeof(t_data));
-	if (!data)
-		return (0);
 	data->mlx = mlx_init();
-	check(data, argc, argv);
+	if (!data->mlx)
+	{
+		ft_printf("Fail at initialize game\n");
+		return (free_array(data->map));
+	}
+	data->m_map->width = 800;
+	data->m_map->height = 600;
+	loading(data);
 	data->mlx_window = mlx_new_window(data->mlx, 800, 600, "PACMAN SO_LONG");
 	if (!data->mlx_window)
-		return (free(data->mlx_window), -1);
-	//initialzie game
-	loading(data);
+		return (free(data->mlx_window));
 	mlx_hook(data->mlx_window, DestroyNotify, StructureNotifyMask, &data_destroyer, &data);
 	mlx_key_hook(data->mlx, &keys_press, &data);
 	mlx_loop(data->mlx);
+}
+int	main(int argc, char **argv)
+{
+	t_data *data;
+
+	data = ft_calloc(1, sizeof(t_data));
+	if (!data)
+		return (0);
+	if (check(data, argc, argv))
+	{
+		return (0);
+	}
+	game_init(data);
+/* 	loading(data);
+	mlx_hook(data->mlx_window, DestroyNotify, StructureNotifyMask, &data_destroyer, &data);
+	mlx_key_hook(data->mlx, &keys_press, &data);
+	mlx_loop(data->mlx); */
 	return (0);
 }

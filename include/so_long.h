@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:27:52 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/12 19:01:30 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/14 19:21:07 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,6 @@ typedef struct s_sprites
 	void	*bg;
 }			t_sprites;
 
-typedef struct s_data
-{
-	void		*mlx;
-	void		*mlx_window;
-	int			fd;
-	char		**mapa;
-	t_sprites	*sprites;
-	t_map		*m_map;
-}			t_data;
 
 typedef struct s_map
 {
@@ -49,9 +40,21 @@ typedef struct s_map
 	int		player;
 }			t_map;
 
+typedef struct s_data
+{
+	void		*mlx;
+	void		*mlx_window;
+	int			fd;
+	char		**map;
+	t_sprites	*sprites;
+	t_map		*m_map;
+}			t_data;
+
 int		available_char(char c);
 void	loading(t_data *data);
-void	check(t_data *data, int argc, char **argv);
+int		check(t_data *data, int argc, char **argv);
 void	free_array(char **str);
+int		check_items(t_data *data, char **map);
+void	flood_fill(t_data *data, int x, int y);
 
 #endif

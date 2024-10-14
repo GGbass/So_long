@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:19:54 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/12 19:37:19 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/14 18:56:03 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	available_char(char c)
 int	check_items(t_data *data, char **map)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while(map[i])
@@ -43,7 +44,7 @@ int	check_items(t_data *data, char **map)
 			if (!available_char(map[i][j]) && (map[i][j++] != '\0'))
 				return (0);
 			else if (map[i][j] == 'C')
-				data->m_mapa->collect++;
+				data->m_map->collect++;
 			else if (map[i][j] == 'E')
 				data->m_map->exit++;
 			else if (map[i][j] == 'P')
@@ -60,7 +61,7 @@ int	check_items(t_data *data, char **map)
 
 void	flood_fill(t_data *data, int x, int y)
 {
-	if (x < 0 || x >= data->m_map->widht
+	if (x < 0 || x >= data->m_map->width
 		|| data->map[x][y] == '1'
 		|| data->map[x][y] == 'X')
 		return ;
@@ -80,5 +81,25 @@ void	flood_fill(t_data *data, int x, int y)
 
 /* int	pass_condition(char )
 {
+	
+void	start_game(t_map *map)
+{
+	map->mlx = mlx_init();
+	if (!map->mlx)
+	{
+		ft_putstr_fd(RED "Error! " RC, 2);
+		ft_putstr_fd("No se pudo iniciar el mlx\n", 2);
+		return ;
+	}
+	if (map->size.width <= 40 && map->size.height <= 100)
+		map->win = mlx_new_window(map->mlx, map->size.height * SIZE, \
+			map->size.width * SIZE, "La leyenda de Sombra");
+	if (!map->win)
+	{
+		ft_putstr_fd(RED "Error! " RC, 2);
+		ft_putstr_fd("No se pudo iniciar la ventana\n", 2);
+		free_map(map);
+		print_error(2);
+	}
 	
 } */

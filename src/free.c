@@ -22,7 +22,7 @@ void	free_sprites(t_data *data)
 		mlx_destroy_image(data->mlx, data->sprites->unlock_exit);
 	if (data->sprites->player)
 		mlx_destroy_image(data->mlx, data->sprites->player);
-	if (data->sprites->wall);
+	if (data->sprites->wall)
 		mlx_destroy_image(data->mlx, data->sprites->wall);
 	if (data->sprites->bg)
 		mlx_destroy_image(data->mlx, data->sprites->bg);
@@ -36,6 +36,6 @@ void	free_sprites(t_data *data)
 void	free_array(char **str)
 {
 	while(*str)
-		free(*str++)
+		free(*str++);
 	free(str);
 }
