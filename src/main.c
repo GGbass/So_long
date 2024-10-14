@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:52:48 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/10 21:56:40 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/12 19:26:34 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	data_destroyer(t_data *data)
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	exit (0);
-	return (0);
+	//return (0);
 }
 
 int	keys_press(int key, t_data *data)
@@ -44,6 +44,7 @@ int	main(int argc, char **argv)
 	data->mlx_window = mlx_new_window(data->mlx, 800, 600, "PACMAN SO_LONG");
 	if (!data->mlx_window)
 		return (free(data->mlx_window), -1);
+	//initialzie game
 	loading(data);
 	mlx_hook(data->mlx_window, DestroyNotify, StructureNotifyMask, &data_destroyer, &data);
 	mlx_key_hook(data->mlx, &keys_press, &data);

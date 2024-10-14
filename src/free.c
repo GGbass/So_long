@@ -32,3 +32,10 @@ void	free_sprites(t_data *data)
 		free(data->mlx);
 	}
 }
+
+void	free_array(char **str)
+{
+	while(*str)
+		free(*str++)
+	free(str);
+}
