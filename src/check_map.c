@@ -6,7 +6,7 @@
 /*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:52:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/14 21:23:03 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/17 23:12:34 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	wall_surrounded(char **map)
 				//available char ->'1'
 				if (map[i][j] != wall ) //|| !available_char(map[i][j++]))
 					return (0);
+				j++;
 			}
 		}
 		if (i > 0 && i < ft_len(map))
@@ -52,8 +53,9 @@ int	wall_surrounded(char **map)
 				while(map[i][j] != '\0')
 				{
 					//available char ->'1'
-					if (!available_char(map[i][j++]))  //freed memory
+					if (!available_char(map[i][j]))//freed memory
 						return (0);
+					j++;
 				}
 			}
 		}
@@ -90,17 +92,23 @@ int	check_map(t_data *data, char **map)
 	int	x;
 	int	y;
 	int	n_items;
-	
+
 	if (!is_rectangular(map) || !wall_surrounded(map))
 	{
 		//free(str array map)
-		return (0);
+		return (free_array(data->map, data->run_map), 0);
 	}
 	if (!check_items(data, map))
 	{
 		//free data;
-		//free_array(map);
-		return (free_array(map), 0);
+		return (free_array(data->map, data->run_map), 0);
+	}
+	data->m_map = ft_calloc(1, sizeof(t_map));
+	if (!data->m_map)
+	{
+		//free data;
+		ft_printf("here\n");
+		return (free_array(data->map, data->run_map), 0);
 	}
 	data->m_map->width = ft_len(map);
 	data->m_map->height = ft_strlen(map[0]);
@@ -108,6 +116,7 @@ int	check_map(t_data *data, char **map)
 	x = data->m_map->width; // amounts of rows on map
 	y = data->m_map->y; //  player character position;
 	flood_fill(data, x, y);
+	//ft_printf("after flood fill\n");
 	data->m_map->collect = n_items;
 	return (1);
 }
@@ -129,15 +138,17 @@ int	read_map(t_data *data)
 	if (line)
 		free(line);
 	data->map = ft_split(str_map, '\n');
+	data->run_map = ft_split(str_map, '\n');
+	free(str_map);
 	if (!data->map)
 	{
-		return (free_array(data->map), 0);
+		return (free_array(data->map, data->run_map), 0);
 	}
 	if (!check_map(data, data->map))
 	{
 		//free array str data->map;
 		// free data;
-		return (free_array(data->map), 0);
+		return (free_array(data->map, data->run_map), 0);
 	}
 	return (1);
 }

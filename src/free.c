@@ -12,7 +12,7 @@
 
 #include "../include/so_long.h"
 
-void	free_sprites(t_data *data)
+/* void	free_sprites(t_data *data)
 {
 	if (data->sprites->collect)
 		mlx_destroy_image(data->mlx,data->sprites->collect);
@@ -31,11 +31,14 @@ void	free_sprites(t_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
-}
+} */
 
-void	free_array(char **str)
+void	free_array(char **array1, char **array2)
 {
-	while(*str)
-		free(*str++);
-	free(str);
+	while(*array1)
+		free(*array1++);
+	free(array1);
+	while(*array2)
+		free(*array2++);
+	free(array2);
 }

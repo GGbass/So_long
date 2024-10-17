@@ -6,7 +6,7 @@
 /*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:19:54 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/14 18:56:03 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/17 19:41:33 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int	check_items(t_data *data, char **map)
 		{
 			if (!available_char(map[i][j]) && (map[i][j++] != '\0'))
 				return (0);
-			else if (map[i][j] == 'C')
+			else if (map[i][j++] == 'C')
 				data->m_map->collect++;
-			else if (map[i][j] == 'E')
+			else if (map[i][j++] == 'E')
 				data->m_map->exit++;
-			else if (map[i][j] == 'P')
+			else if (map[i][j++] == 'P')
 			{
 				data->m_map->player++;
 				data->m_map->x = i;

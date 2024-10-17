@@ -6,7 +6,7 @@
 /*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:52:48 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/14 19:20:26 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/17 23:36:22 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,27 @@ int	keys_press(int key, t_data *data)
 	ft_printf("Key ; %d\n", key);
 	return (0);
 }
+
 void	game_init(t_data *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
 	{
 		ft_printf("Fail at initialize game\n");
-		return (free_array(data->map));
+		return (free_array(data->map, data->run_map));
 	}
-	data->m_map->width = 800;
-	data->m_map->height = 600;
-	loading(data);
-	data->mlx_window = mlx_new_window(data->mlx, 800, 600, "PACMAN SO_LONG");
+	data->m_map->width = (ft_strlen(data->run_map[0]) - 1) * 32;
+	data->m_map->height = ft_len(data->run_map) * 32;
+	data->mlx_window = mlx_new_window(data->mlx, data->m_map->width, data->m_map->height, "PACMAN SO_LONG");
 	if (!data->mlx_window)
 		return (free(data->mlx_window));
+	loading(data);
+	drawing(data);
 	mlx_hook(data->mlx_window, DestroyNotify, StructureNotifyMask, &data_destroyer, &data);
-	mlx_key_hook(data->mlx, &keys_press, &data);
+	mlx_hook(data->mlx_window, 2, 1L << 0, keys_press, data);
 	mlx_loop(data->mlx);
 }
+
 int	main(int argc, char **argv)
 {
 	t_data *data;
@@ -54,14 +57,10 @@ int	main(int argc, char **argv)
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		return (0);
-	if (check(data, argc, argv))
+	if (!check(data, argc, argv))
 	{
-		return (0);
+		return (free_array(data->map, data->run_map), 0);
 	}
 	game_init(data);
-/* 	loading(data);
-	mlx_hook(data->mlx_window, DestroyNotify, StructureNotifyMask, &data_destroyer, &data);
-	mlx_key_hook(data->mlx, &keys_press, &data);
-	mlx_loop(data->mlx); */
 	return (0);
 }

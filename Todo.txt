@@ -24,3 +24,7 @@ movementss...
 
 restar first make a variable checkpoint defaults values
 call default
+
+img
+display
+init;

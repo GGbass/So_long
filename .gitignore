@@ -1,0 +1,7 @@
+*.o
+*.a
+.vscode
+LICENSE
+Todo.txt
+README.md
+mlx
