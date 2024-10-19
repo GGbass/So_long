@@ -37,8 +37,10 @@ void	free_array(char **array1, char **array2)
 {
 	while(*array1)
 		free(*array1++);
-	free(array1);
+	if (*array1 != NULL)
+		free(array1);
 	while(*array2)
 		free(*array2++);
-	free(array2);
+	if (*array2 != NULL)
+		free(array2);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:27:52 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/17 23:17:39 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/18 19:22:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_data
 	void		*mlx;
 	void		*mlx_window;
 	int			fd;
+	int			moves;
 	char		**map;
 	char		**run_map;
 	t_sprites	*sprites;

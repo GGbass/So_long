@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:52:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/17 23:12:34 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/18 19:05:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ int	is_rectangular(char **map)
 	fline = ft_strlen(map[0]);
 	while(map[i] != NULL)
 	{
-		/* if (i == ft_len(map) - 1)
-			fline--; */
 		ft_printf("fline size and line = %d %d\n", fline, ft_strlen(map[i]));
 		ft_printf("map[i] = %s\n", map[i]);
 		if (fline != ft_strlen(map[i])) //|| !ft_empty(map[i++]))
@@ -93,16 +91,18 @@ int	check_map(t_data *data, char **map)
 	int	y;
 	int	n_items;
 
-	if (!is_rectangular(map) || !wall_surrounded(map))
+	if (!is_rectangular(data->map) || !wall_surrounded(data->map))
 	{
 		//free(str array map)
 		return (free_array(data->map, data->run_map), 0);
 	}
-	if (!check_items(data, map))
+	/* if (!check_items(data, map))
 	{
 		//free data;
-		return (free_array(data->map, data->run_map), 0);
-	}
+		ft_printf("Map read\n");
+		//return (free_array(data->map, data->run_map), 0);
+		return (0);
+	} */
 	data->m_map = ft_calloc(1, sizeof(t_map));
 	if (!data->m_map)
 	{
@@ -140,15 +140,15 @@ int	read_map(t_data *data)
 	data->map = ft_split(str_map, '\n');
 	data->run_map = ft_split(str_map, '\n');
 	free(str_map);
-	if (!data->map)
+	if (!data->map && !data->run_map)
 	{
 		return (free_array(data->map, data->run_map), 0);
 	}
 	if (!check_map(data, data->map))
 	{
-		//free array str data->map;
 		// free data;
-		return (free_array(data->map, data->run_map), 0);
+		//return (free_array(data->map, data->run_map), 0);
+		return (0);
 	}
 	return (1);
 }
@@ -167,6 +167,7 @@ int	check(t_data *data, int argc, char **argv)
 		//free *data
 		return (ft_putstr_fd("Error\n", 2), 0);
 	}
+	ft_printf("File opened\n");
 	if (!read_map(data))
 	{
 		return (0);

@@ -40,15 +40,15 @@ void	drawing(t_data *data)
 		while(data->run_map[i][j])
 		{
 			if (data->run_map[i][j] == '1')
-				mlx_put_image_to_window(data->mlx, data->mlx_window, data->sprites->wall, j * 32, i * 32);
+				mlx_put_image_to_window(data->mlx, data->mlx_window, data->sprites->wall, j * 20, i * 25);
 			else if (data->run_map[i][j] == '0')
-				mlx_put_image_to_window(data->mlx, data->mlx_window, data->sprites->bg, j * 32, i * 32);
+				mlx_put_image_to_window(data->mlx, data->mlx_window, data->sprites->bg, j * 20, i * 25);
 			else if (data->run_map[i][j] == 'C')
-				mlx_put_image_to_window(data->mlx, data->mlx_window, data->sprites->collect, j * 32, i * 32);
+				mlx_put_image_to_window(data->mlx, data->mlx_window, data->sprites->collect, j * 20, i * 25);
 			else if (data->run_map[i][j] == 'P')
-				mlx_put_image_to_window(data->mlx, data->mlx_window, data->sprites->player, j * 32, i * 32);
+				mlx_put_image_to_window(data->mlx, data->mlx_window, data->sprites->player, j * 20, i * 25);
 			else if (data->run_map[i][j] == 'E')
-				mlx_put_image_to_window(data->mlx, data->mlx_window, data->sprites->exit, j * 32, i * 32);
+				mlx_put_image_to_window(data->mlx, data->mlx_window, data->sprites->exit, j * 20, i * 25);
 			j++;
 		}
 		i++;

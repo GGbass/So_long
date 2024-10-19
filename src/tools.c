@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:19:54 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/17 19:41:33 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/18 02:13:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,19 @@ int	check_items(t_data *data, char **map)
 		j = 0;
 		while(map[i][j] != '\0')
 		{
-			if (!available_char(map[i][j]) && (map[i][j++] != '\0'))
+			if (!available_char(map[i][j]) && (map[i][j] != '\0'))
 				return (0);
-			else if (map[i][j++] == 'C')
+			else if (map[i][j] == 'C')
 				data->m_map->collect++;
-			else if (map[i][j++] == 'E')
+			else if (map[i][j] == 'E')
 				data->m_map->exit++;
-			else if (map[i][j++] == 'P')
+			else if (map[i][j] == 'P')
 			{
 				data->m_map->player++;
 				data->m_map->x = i;
 				data->m_map->y = ft_strchr(data->map[i], 'P') - data->map[i];
 			}
+			j++;
 		}
 		i++;
 	}
@@ -77,7 +78,6 @@ void	flood_fill(t_data *data, int x, int y)
 	flood_fill(data, x, y + 1);
 	flood_fill(data, x, y - 1);
 }
-
 
 /* int	pass_condition(char )
 {
