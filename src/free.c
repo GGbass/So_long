@@ -12,7 +12,7 @@
 
 #include "../include/so_long.h"
 
-/* void	free_sprites(t_data *data)
+void	free_sprites(t_data *data)
 {
 	if (data->sprites->collect)
 		mlx_destroy_image(data->mlx,data->sprites->collect);
@@ -31,7 +31,7 @@
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
-} */
+}
 
 void	free_array(char **array1, char **array2)
 {
@@ -43,4 +43,18 @@ void	free_array(char **array1, char **array2)
 		free(*array2++);
 	if (*array2 != NULL)
 		free(array2);
+}
+int	data_destroyer(t_data *data)
+{
+	/* if (!data->mlx_window)
+		return (free(data->mlx_window), -1); */
+	mlx_destroy_window(data->mlx, data->mlx_window);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
+	free_array(data->map, data->run_map);
+	free(data->sprites);
+	free_sprites(data);
+	free(data->m_map);
+	exit (0);
+	//return (0); 
 }

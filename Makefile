@@ -21,7 +21,6 @@ BLUE = \033[0;94m
 MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
-
 NAME = so_long
 
 INCLUDES = -I/usr/include -Imlx
@@ -30,7 +29,8 @@ MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 #NAMEB = bonus
 
-SRC =	./src/tools.c \
+SRC =	./src/tools2.c \
+		./src/tools.c \
 		./src/check_map.c \
 		./src/free.c \
 		./src/load_data.c \
@@ -42,7 +42,7 @@ OBJ = $(SRC:.c=.o)
 
 #OBJB = $(SRCB:.c=.o)
 
-CFLAGS = -Wall -Werror -Wextra #-g3 -fsanitize=address,leak
+CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address,leak
 CC = gcc
 #-no-pie
 

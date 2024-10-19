@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:27:52 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/18 19:22:31 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/19 21:56:03 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ typedef struct s_data
 	void		*mlx_window;
 	int			fd;
 	int			moves;
+	int			pos_x;
+	int			pos_y;
+	int			exit_x;
+	int			exit_y;
+	int			exit_flag;
 	char		**map;
 	char		**run_map;
 	t_sprites	*sprites;
@@ -64,10 +69,14 @@ typedef struct s_data
 
 int		available_char(char c);
 void	loading(t_data *data);
+int		data_destroyer(t_data *data);
+void	check_exit(t_data *data);
 int		check(t_data *data, int argc, char **argv);
 void	free_array(char **array1, char **array2);
 int		check_items(t_data *data, char **map);
 void	flood_fill(t_data *data, int x, int y);
+void	find_player(t_data *data);
+void	update_location(t_data *data, int x, int y);
 void	drawing(t_data *data);
 
 #endif

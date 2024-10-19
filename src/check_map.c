@@ -3,59 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:52:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/18 19:05:27 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/19 23:21:08 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-/*  1 = wall
-	0 = path
-	E = Enemy
-	P = player
-	C = Collectable */
-
-/* int	valid_map(t_data *data, char **map)
-
-	
-} */
-
-
 int	wall_surrounded(char **map)
 {
-	char	wall;
 	int		i;
 	int		j;
 
 	j = 0;
 	i = -1;
-	wall = '1';
-	while(map[++i] != NULL)
+	while (map[++i] != NULL)
 	{
 		j = 0;
-		if (map[i] == 0 || i == ft_len(map))
+		ft_printf("%d\n", i);
+		ft_printf("%d\n", ft_len(map));
+		if (i == 0 || i == (ft_len(map) - 1))
 		{
 			while(map[i][j] != '\0')
 			{
-				//available char ->'1'
-				if (map[i][j] != wall ) //|| !available_char(map[i][j++]))
+				if (map[i][j++] != '1')
 					return (0);
-				j++;
 			}
 		}
 		if (i > 0 && i < ft_len(map))
 		{
-			if (map[i][j] == wall && map[i][ft_strlen(map[i])] == wall)
+			if (map[i][j] == '1' && map[i][ft_strlen(map[i])] == '1')
 			{
-				while(map[i][j] != '\0')
+				while (map[i][j] != '\0')
 				{
-					//available char ->'1'
-					if (!available_char(map[i][j]))//freed memory
+					if (!available_char(map[i][j++]))
 						return (0);
-					j++;
+					
 				}
 			}
 		}
@@ -74,9 +59,8 @@ int	is_rectangular(char **map)
 	{
 		ft_printf("fline size and line = %d %d\n", fline, ft_strlen(map[i]));
 		ft_printf("map[i] = %s\n", map[i]);
-		if (fline != ft_strlen(map[i])) //|| !ft_empty(map[i++]))
+		if (fline != ft_strlen(map[i]) || ft_empty(map[i]))
 		{
-			//free map;
 			ft_printf("Error here \n");
 			return (0);
 		}
@@ -94,29 +78,20 @@ int	check_map(t_data *data, char **map)
 	if (!is_rectangular(data->map) || !wall_surrounded(data->map))
 	{
 		//free(str array map)
+		ft_printf("failing check walls\n");
 		return (free_array(data->map, data->run_map), 0);
 	}
-	/* if (!check_items(data, map))
+	if (!check_items(data, map))
 	{
-		//free data;
-		ft_printf("Map read\n");
-		//return (free_array(data->map, data->run_map), 0);
-		return (0);
-	} */
-	data->m_map = ft_calloc(1, sizeof(t_map));
-	if (!data->m_map)
-	{
-		//free data;
-		ft_printf("here\n");
+		ft_printf("failing check items \n");
 		return (free_array(data->map, data->run_map), 0);
 	}
+	n_items = data->m_map->collect;
 	data->m_map->width = ft_len(map);
 	data->m_map->height = ft_strlen(map[0]);
-	n_items = data->m_map->collect;
-	x = data->m_map->width; // amounts of rows on map
-	y = data->m_map->y; //  player character position;
+	x = data->m_map->width;
+	y = data->m_map->y;
 	flood_fill(data, x, y);
-	//ft_printf("after flood fill\n");
 	data->m_map->collect = n_items;
 	return (1);
 }
@@ -141,15 +116,9 @@ int	read_map(t_data *data)
 	data->run_map = ft_split(str_map, '\n');
 	free(str_map);
 	if (!data->map && !data->run_map)
-	{
 		return (free_array(data->map, data->run_map), 0);
-	}
 	if (!check_map(data, data->map))
-	{
-		// free data;
-		//return (free_array(data->map, data->run_map), 0);
 		return (0);
-	}
 	return (1);
 }
 

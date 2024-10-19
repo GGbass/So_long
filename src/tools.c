@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:19:54 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/18 02:13:33 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/19 21:46:22 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	find_player(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while(data->map[i])
+	{
+		j = 0;
+		while(data->map[i][j] != '\0')
+		{
+			if (data->map[i][j] == 'P')
+			{
+				data->pos_x = i;
+				data->pos_y = j;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
 
 int	game_conditions(t_data *data)
 {
@@ -24,7 +47,7 @@ int	available_char(char c)
 {
 	char	*available;
 
-	available = "01PEC";
+	available = "01PEC\r";
 	if (ft_strchr(available, c) == NULL)
 		return (0);
 	return (1);
@@ -36,6 +59,9 @@ int	check_items(t_data *data, char **map)
 	int	j;
 
 	i = 0;
+	data->m_map = ft_calloc(1, sizeof(t_map));
+	if (data->m_map == NULL)
+		return (0);
 	while(map[i])
 	{
 		j = 0;
@@ -43,11 +69,11 @@ int	check_items(t_data *data, char **map)
 		{
 			if (!available_char(map[i][j]) && (map[i][j] != '\0'))
 				return (0);
-			else if (map[i][j] == 'C')
-				data->m_map->collect++;
-			else if (map[i][j] == 'E')
-				data->m_map->exit++;
-			else if (map[i][j] == 'P')
+			if (map[i][j] == 'C')
+			data->m_map->collect++;;
+			if (map[i][j] == 'E')
+			data->m_map->exit++;
+			if (map[i][j] == 'P')
 			{
 				data->m_map->player++;
 				data->m_map->x = i;
@@ -78,28 +104,3 @@ void	flood_fill(t_data *data, int x, int y)
 	flood_fill(data, x, y + 1);
 	flood_fill(data, x, y - 1);
 }
-
-/* int	pass_condition(char )
-{
-	
-void	start_game(t_map *map)
-{
-	map->mlx = mlx_init();
-	if (!map->mlx)
-	{
-		ft_putstr_fd(RED "Error! " RC, 2);
-		ft_putstr_fd("No se pudo iniciar el mlx\n", 2);
-		return ;
-	}
-	if (map->size.width <= 40 && map->size.height <= 100)
-		map->win = mlx_new_window(map->mlx, map->size.height * SIZE, \
-			map->size.width * SIZE, "La leyenda de Sombra");
-	if (!map->win)
-	{
-		ft_putstr_fd(RED "Error! " RC, 2);
-		ft_putstr_fd("No se pudo iniciar la ventana\n", 2);
-		free_map(map);
-		print_error(2);
-	}
-	
-} */
