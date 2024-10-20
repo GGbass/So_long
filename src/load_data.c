@@ -16,6 +16,7 @@ void	loading(t_data *data)
 {
 	int	widt;
 	int	height;
+
 	data->sprites = ft_calloc(1, sizeof(t_sprites));
 	if (!data->sprites)
 	{
@@ -28,6 +29,7 @@ void	loading(t_data *data)
 	data->sprites->player = mlx_xpm_file_to_image(data->mlx, "textures/pacman-art/pacman-right/pac_open_right.xpm", &widt, &height);
 	data->sprites->exit = mlx_xpm_file_to_image(data->mlx, "textures/wall/apple.xpm", &widt, &height);
 }
+
 void	drawing(t_data *data)
 {
 	int	i;

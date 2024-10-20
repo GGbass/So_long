@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:52:48 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/19 22:53:41 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/21 00:16:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	move(t_data *data, int x, int y)
 int	keys_press(int key, t_data *data)
 {
 	ft_printf("items remining %d\n", data->m_map->collect);
-	ft_printf("Key ; %d\n", key);
 	if (key == UP_W || key == UP_ARROW)
 	{
 		ft_printf("UP\n");
@@ -91,6 +90,8 @@ int	main(int argc, char **argv)
 {
 	t_data *data;
 
+	if (argc != 2)
+		return (ft_printf("Error\n"), 0);
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		return (0);
@@ -99,7 +100,6 @@ int	main(int argc, char **argv)
 		//return (free_array(data->map, data->run_map), 0);
 		return (0);
 	}
-	ft_printf("Map checked\n");
 	game_init(data);
 	return (0);
 }

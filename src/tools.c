@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:19:54 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/19 21:46:22 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/21 00:51:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	find_player(t_data *data)
 	int	j;
 
 	i = 0;
-	while(data->map[i])
+	while (data->map[i])
 	{
 		j = 0;
-		while(data->map[i][j] != '\0')
+		while (data->map[i][j] != '\0')
 		{
 			if (data->map[i][j] == 'P')
 			{
@@ -40,7 +40,6 @@ int	game_conditions(t_data *data)
 	if (data->m_map->player == 1 && data->m_map->collect >= 1 && data->m_map->exit == 1)
 		return (1);
 	return (0);
-	//check for enemies ?
 }
 
 int	available_char(char c)
@@ -62,10 +61,10 @@ int	check_items(t_data *data, char **map)
 	data->m_map = ft_calloc(1, sizeof(t_map));
 	if (data->m_map == NULL)
 		return (0);
-	while(map[i])
+	while (map[i])
 	{
 		j = 0;
-		while(map[i][j] != '\0')
+		while (map[i][j] != '\0')
 		{
 			if (!available_char(map[i][j]) && (map[i][j] != '\0'))
 				return (0);
