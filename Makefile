@@ -29,7 +29,8 @@ MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 #NAMEB = bonus
 
-SRC =	./src/tools2.c \
+SRC =	./src/check_argv.c \
+		./src/tools2.c \
 		./src/tools.c \
 		./src/check_map.c \
 		./src/free.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:26:38 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/21 00:49:04 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/21 17:10:41 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	update_location(t_data *data, int x, int y)
 {
 	data->pos_x = x;
 	data->pos_y = y;
+	data->moves++;
 }
 
 void	check_exit(t_data *data)

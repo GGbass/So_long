@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:52:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/21 00:40:02 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/21 20:54:23 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,15 @@ int	read_map(t_data *data)
 	data->map = ft_split(str_map, '\n');
 	data->run_map = ft_split(str_map, '\n');
 	free(str_map);
-	if (!data->map && !data->run_map)
-		return (free_array(data->map, data->run_map), 0);
-	if (!check_map(data, data->map))
-		return (0);
+	if ((!data->map && !data->run_map) || ft_len(data->map) > 32)
+		data_destroyer(data);
+		//return (free_array(data->map, data->run_map), 0);
+	if (!check_map(data, data->map) || ft_strlen(data->map[0]) > 60)
+	{
+		ft_printf("Error\n");
+		data_destroyer(data);
+		//return (free_array(data->map, data->run_map), 0);
+	}
 	return (1);
 }
 
@@ -112,6 +117,7 @@ int	check(t_data *data, int argc, char **argv)
 {
 	if (argc != 2 || !argv[1])
 	{
+		data_destroyer(data);
 		return (ft_putstr_fd("Error\n", 2), 0);
 	}
 	if (argv[1])

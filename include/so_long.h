@@ -6,7 +6,7 @@
 /*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:27:52 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/19 21:56:03 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/21 20:27:12 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
+# define X 17
 # define RIGHT_D 100
 # define LEFT_A 97
 # define UP_W 119
@@ -30,11 +31,11 @@
 
 typedef struct s_sprites
 {
-	void	*collect;
-	void	*exit;
-	void	*unlock_exit;
-	void	*player;
-	void	*wall;
+	void	*c;
+	void	*e;
+	void	*u_e;
+	void	*p;
+	void	*w;
 	void	*bg;
 }			t_sprites;
 
@@ -63,12 +64,12 @@ typedef struct s_data
 	int			exit_flag;
 	char		**map;
 	char		**run_map;
-	t_sprites	*sprites;
+	t_sprites	*img;
 	t_map		*m_map;
 }			t_data;
 
 int		available_char(char c);
-void	loading(t_data *data);
+void	loading(t_data *data, t_sprites *img);
 int		data_destroyer(t_data *data);
 void	check_exit(t_data *data);
 int		check(t_data *data, int argc, char **argv);
@@ -77,6 +78,6 @@ int		check_items(t_data *data, char **map);
 void	flood_fill(t_data *data, int x, int y);
 void	find_player(t_data *data);
 void	update_location(t_data *data, int x, int y);
-void	drawing(t_data *data);
-
+void	drawing(t_data *data, t_sprites *img);
+int		check_argv(int argc, char **argv);
 #endif
