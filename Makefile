@@ -49,12 +49,12 @@ CC = gcc
 
 all: $(NAME) show_progress
 
-$(NAME): $(OBJ)  
+$(NAME): $(OBJ)
 	@make -s -C libft
 	@make -s -C mlx
 	@cp ./mlx/libmlx_Linux.a .
 	$(CC) $(CFLAGS) $(OBJ) $(INCLUDES)  $(MLX_FLAGS) -L libft -lft -o so_long
-	
+
 show_progress:
 		@for file in $(SRC); do \
 			echo "$(GREEN)Compiling $$file "; \

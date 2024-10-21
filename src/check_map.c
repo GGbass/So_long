@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:52:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/21 21:43:15 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/22 00:21:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,13 @@ int	check_map(t_data *data, char **map)
 
 	if (!is_rectangular(data->map) || !wall_surrounded(data->map))
 	{
-		return (free_array(data->map, data->run_map), 0);
+		return (data_destroyer(data), 0);
+		//return (free_array(data->map, data->run_map), 0);
 	}
 	if (!check_items(data, map))
 	{
-		return (free_array(data->map, data->run_map), 0);
+		return (data_destroyer(data), 0);
+		//return (free_array(data->map, data->run_map), 0);
 	}
 	n_items = data->m_map->collect;
 	data->m_map->width = ft_len(map);
@@ -103,7 +105,7 @@ int	read_map(t_data *data)
 	free(str_map);
 	if ((!data->map && !data->run_map) || ft_len(data->map) > 32)
 		return (free_array(data->map, data->run_map), 0);
-	if (!check_map(data, data->map) || ft_strlen(data->map[0]) > 60)
+	if (!check_map(data, data->map) || ft_strlen(data->map[0]) > 80)
 	{
 		ft_printf("Error\n");
 		data_destroyer(data);

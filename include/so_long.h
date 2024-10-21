@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:27:52 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/21 21:31:09 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/22 01:02:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ typedef struct s_data
 int		available_char(char c);
 void	loading(t_data *data, t_sprites *img);
 int		data_destroyer(t_data *data);
-void	check_exit(t_data *data);
+void	check_exit(t_data *data, int x, int y);
+void	check_collect(t_data *data, int x, int y);
 int		check(t_data *data, int argc, char **argv);
 void	free_array(char **array1, char **array2);
 int		check_items(t_data *data, char **map);
