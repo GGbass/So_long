@@ -24,7 +24,21 @@ void	loading(t_data *data, t_sprites *img)
 	img->e = mlx_xpm_file_to_image(data->mlx, "img/apple.xpm", &w, &h);
 }
 
-void	drawing(t_data *data, t_sprites *img)
+static void	put_image(t_data *data, char flag, int j, int i)
+{
+	if (flag == '1')
+		mlx_put_image_to_window(data->mlx, data->mlx_window, data->img->w, j * 40, i * 50);
+	else if (flag == '0')
+		mlx_put_image_to_window(data->mlx, data->mlx_window, data->img->bg, j * 40, i * 50);
+	else if (flag == 'C')
+		mlx_put_image_to_window(data->mlx, data->mlx_window, data->img->c, j * 40, i * 50);
+	else if (flag == 'P')
+		mlx_put_image_to_window(data->mlx, data->mlx_window, data->img->p, j * 40, i * 50);
+	else if (flag == 'E')
+		mlx_put_image_to_window(data->mlx, data->mlx_window, data->img->e, j * 40, i * 50);
+}
+
+void	drawing(t_data *data)
 {
 	int	i;
 	int	j;
@@ -36,15 +50,15 @@ void	drawing(t_data *data, t_sprites *img)
 		while(data->run_map[i][j])
 		{
 			if (data->run_map[i][j] == '1')
-				mlx_put_image_to_window(data->mlx, data->mlx_window, img->w, j * 40, i * 50);
+				put_image(data, '1', j, i );
 			else if (data->run_map[i][j] == '0')
-				mlx_put_image_to_window(data->mlx, data->mlx_window, img->bg, j * 40, i * 50);
+				put_image(data, '0', j, i );
 			else if (data->run_map[i][j] == 'C')
-				mlx_put_image_to_window(data->mlx, data->mlx_window, img->c, j * 40, i * 50);
+				put_image(data, 'C', j, i );
 			else if (data->run_map[i][j] == 'P')
-				mlx_put_image_to_window(data->mlx, data->mlx_window, img->p, j * 40, i * 50);
+				put_image(data, 'P', j, i );
 			else if (data->run_map[i][j] == 'E')
-				mlx_put_image_to_window(data->mlx, data->mlx_window, img->e, j * 40, i * 50);
+				put_image(data, 'E', j, i );
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:52:48 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/21 20:37:48 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/21 21:30:56 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	move(t_data *data, int x, int y)
 		data->run_map[data->pos_x][data->pos_y] = '0';
 		update_location(data, x, y);
 	}
-	drawing(data, data->img);
+	drawing(data);
 	ft_printf("Player moves %d\n", data->moves);
 }
 
@@ -84,7 +84,7 @@ void	game_init(t_data *data)
 		return ;
 	}
 	loading(data, data->img);
-	drawing(data, data->img);
+	drawing(data);
 	find_player(data);
 	mlx_hook(data->mlx_window, DestroyNotify, StructureNotifyMask, data_destroyer, &data);
 	mlx_hook(data->mlx_window, 2, 1L << 0, keys_press, data);

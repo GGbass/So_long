@@ -6,7 +6,7 @@
 /*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:52:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/21 20:54:23 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/21 21:43:15 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	wall_surrounded(char **map)
 		j = 0;
 		if (i == 0 || i == (ft_len(map) - 1))
 		{
-			while(map[i][j] != '\0')
+			while (map[i][j] != '\0')
 			{
 				if (map[i][j++] != '1')
 					return (0);
@@ -48,7 +48,7 @@ int	is_rectangular(char **map)
 
 	i = 0;
 	fline = ft_strlen(map[0]);
-	while(map[i] != NULL)
+	while (map[i] != NULL)
 	{
 		if (fline != ft_strlen(map[i]) || ft_empty(map[i]))
 		{
@@ -92,7 +92,7 @@ int	read_map(t_data *data)
 	str_map = ft_strdup("");
 	while (line)
 	{
-		str_map = ft_gnlstrjoin(str_map, line , ft_strlen(line));
+		str_map = ft_gnlstrjoin(str_map, line, ft_strlen(line));
 		free(line);
 		line = get_next_line(data->fd);
 	}
@@ -102,8 +102,7 @@ int	read_map(t_data *data)
 	data->run_map = ft_split(str_map, '\n');
 	free(str_map);
 	if ((!data->map && !data->run_map) || ft_len(data->map) > 32)
-		data_destroyer(data);
-		//return (free_array(data->map, data->run_map), 0);
+		return (free_array(data->map, data->run_map), 0);
 	if (!check_map(data, data->map) || ft_strlen(data->map[0]) > 60)
 	{
 		ft_printf("Error\n");

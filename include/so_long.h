@@ -6,7 +6,7 @@
 /*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:27:52 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/21 20:27:12 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/21 21:31:09 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ int		check_items(t_data *data, char **map);
 void	flood_fill(t_data *data, int x, int y);
 void	find_player(t_data *data);
 void	update_location(t_data *data, int x, int y);
-void	drawing(t_data *data, t_sprites *img);
+void	drawing(t_data *data);
 int		check_argv(int argc, char **argv);
 #endif

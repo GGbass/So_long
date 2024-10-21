@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:19:54 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/21 00:51:48 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/21 21:10:46 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,28 @@ int	check_items(t_data *data, char **map)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	data->m_map = ft_calloc(1, sizeof(t_map));
 	if (data->m_map == NULL)
 		return (0);
-	while (map[i])
+	while (map[++i])
 	{
-		j = 0;
-		while (map[i][j] != '\0')
+		j = -1;
+		while (map[i][++j] != '\0')
 		{
 			if (!available_char(map[i][j]) && (map[i][j] != '\0'))
 				return (0);
 			if (map[i][j] == 'C')
-			data->m_map->collect++;;
+				data->m_map->collect++;;
 			if (map[i][j] == 'E')
-			data->m_map->exit++;
+				data->m_map->exit++;
 			if (map[i][j] == 'P')
 			{
 				data->m_map->player++;
 				data->m_map->x = i;
 				data->m_map->y = ft_strchr(data->map[i], 'P') - data->map[i];
 			}
-			j++;
 		}
-		i++;
 	}
 	return (1);
 }
