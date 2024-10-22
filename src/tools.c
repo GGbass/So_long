@@ -6,7 +6,7 @@
 /*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:19:54 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/21 21:10:46 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/22 23:04:47 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,21 @@ void	find_player(t_data *data)
 
 int	game_conditions(t_data *data)
 {
-	if (data->m_map->player == 1 && data->m_map->collect >= 1 && data->m_map->exit == 1)
-		return (1);
-	return (0);
+	int	i;
+	i = 0;
+	/* if (data->m_map->player == 1 && data->m_map->collect >= 1 
+		&& data->m_map->exit == 1)
+		return (1); */
+	while (data->map[i])
+	{
+		if (ft_strchr(data->map[i], 'E') || ft_strchr(data->map[i], 'C'))
+		{
+			ft_printf("Error: E or C founded\n");
+			return (0);
+		}
+		i++;
+	}
+	return (1);
 }
 
 int	available_char(char c)
@@ -57,7 +69,7 @@ int	check_items(t_data *data, char **map)
 	int	i;
 	int	j;
 
-	i = -1;
+	i = 0;
 	data->m_map = ft_calloc(1, sizeof(t_map));
 	if (data->m_map == NULL)
 		return (0);
@@ -66,18 +78,12 @@ int	check_items(t_data *data, char **map)
 		j = -1;
 		while (map[i][++j] != '\0')
 		{
-			if (!available_char(map[i][j]) && (map[i][j] != '\0'))
-				return (0);
 			if (map[i][j] == 'C')
-				data->m_map->collect++;;
-			if (map[i][j] == 'E')
+				data->m_map->collect++;
+			else if (map[i][j] == 'E')
 				data->m_map->exit++;
-			if (map[i][j] == 'P')
-			{
+			else if (map[i][j] == 'P')
 				data->m_map->player++;
-				data->m_map->x = i;
-				data->m_map->y = ft_strchr(data->map[i], 'P') - data->map[i];
-			}
 		}
 	}
 	return (1);
@@ -89,6 +95,7 @@ void	flood_fill(t_data *data, int x, int y)
 		|| data->map[x][y] == '1'
 		|| data->map[x][y] == 'X')
 		return ;
+	ft_printf("not even here x = %d y = %d\n", x, y);
 	if (data->map[x][y] == 'C')
 		data->m_map->collect--;
 	if (data->map[x][y] == 'E' && data->m_map->collect != 0)

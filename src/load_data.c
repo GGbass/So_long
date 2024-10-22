@@ -27,15 +27,20 @@ void	loading(t_data *data, t_sprites *img)
 static void	put_image(t_data *data, char flag, int j, int i)
 {
 	if (flag == '1')
-		mlx_put_image_to_window(data->mlx, data->mlx_window, data->img->w, j * 40, i * 50);
+		mlx_put_image_to_window(data->mlx, data->mlx_window, \
+			data->img->w, j * 40, i * 50);
 	else if (flag == '0')
-		mlx_put_image_to_window(data->mlx, data->mlx_window, data->img->bg, j * 40, i * 50);
+		mlx_put_image_to_window(data->mlx, data->mlx_window, \
+			data->img->bg, j * 40, i * 50);
 	else if (flag == 'C')
-		mlx_put_image_to_window(data->mlx, data->mlx_window, data->img->c, j * 40, i * 50);
+		mlx_put_image_to_window(data->mlx, data->mlx_window, \
+			data->img->c, j * 40, i * 50);
 	else if (flag == 'P')
-		mlx_put_image_to_window(data->mlx, data->mlx_window, data->img->p, j * 40, i * 50);
+		mlx_put_image_to_window(data->mlx, data->mlx_window, \
+			data->img->p, j * 40, i * 50);
 	else if (flag == 'E')
-		mlx_put_image_to_window(data->mlx, data->mlx_window, data->img->e, j * 40, i * 50);
+		mlx_put_image_to_window(data->mlx, data->mlx_window, \
+			data->img->e, j * 40, i * 50);
 }
 
 void	drawing(t_data *data)

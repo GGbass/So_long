@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:52:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/22 00:21:39 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/22 22:56:25 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,22 @@ int	check_map(t_data *data, char **map)
 
 	if (!is_rectangular(data->map) || !wall_surrounded(data->map))
 	{
+		ft_printf("Error it's not rectangular or wall surrounded\n");
 		return (data_destroyer(data), 0);
-		//return (free_array(data->map, data->run_map), 0);
 	}
-	if (!check_items(data, map))
-	{
+	if (!check_items(data, map) || !check_chars(map))
 		return (data_destroyer(data), 0);
-		//return (free_array(data->map, data->run_map), 0);
-	}
 	n_items = data->m_map->collect;
 	data->m_map->width = ft_len(map);
 	data->m_map->height = ft_strlen(map[0]);
 	x = data->m_map->width;
-	y = data->m_map->y;
+	y = data->m_map->height;
 	flood_fill(data, x, y);
+	if (!game_conditions(data))
+	{
+		ft_printf("Error: Unavailable game conditions\n");
+		return (data_destroyer(data), 0);
+	}
 	data->m_map->collect = n_items;
 	return (1);
 }
@@ -107,9 +109,8 @@ int	read_map(t_data *data)
 		return (free_array(data->map, data->run_map), 0);
 	if (!check_map(data, data->map) || ft_strlen(data->map[0]) > 80)
 	{
-		ft_printf("Error\n");
+		ft_printf("Error cheking map\n");
 		data_destroyer(data);
-		//return (free_array(data->map, data->run_map), 0);
 	}
 	return (1);
 }
@@ -124,12 +125,8 @@ int	check(t_data *data, int argc, char **argv)
 	if (argv[1])
 		data->fd = open(argv[1], O_RDONLY);
 	if (data->fd < 0)
-	{
-		return (ft_putstr_fd("Error\n", 2), 0);
-	}
+		return (ft_putstr_fd("Error invalid fd\n", 2), 0);
 	if (!read_map(data))
-	{
 		return (0);
-	}
 	return (1);
 }

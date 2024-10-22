@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:52:48 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/22 01:06:40 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/22 22:28:54 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,7 @@ int	main(int argc, char **argv)
 	if (!data)
 		return (0);
 	if (!check(data, argc, argv))
-	{
 		return (0);
-		//return (data_destroyer(data)), 0;
-	}
 	game_init(data);
 	return (0);
 }

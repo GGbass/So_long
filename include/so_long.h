@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:27:52 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/22 01:02:17 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/22 22:48:50 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,12 @@ typedef struct s_data
 	t_map		*m_map;
 }			t_data;
 
+int	check_chars(char **map);
 int		available_char(char c);
 void	loading(t_data *data, t_sprites *img);
 int		data_destroyer(t_data *data);
 void	check_exit(t_data *data, int x, int y);
+int		game_conditions(t_data *data);
 void	check_collect(t_data *data, int x, int y);
 int		check(t_data *data, int argc, char **argv);
 void	free_array(char **array1, char **array2);
