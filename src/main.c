@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:52:48 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/22 22:28:54 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/24 02:54:34 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	move(t_data *data, int x, int y)
 		check_collect(data, x, y);
 	else if (data->run_map[x][y] == 'E')
 		check_exit(data, x, y);
-	else if(data->run_map[x][y] == '0')
+	else if (data->run_map[x][y] == '0')
 	{
 		data->run_map[x][y] = 'P';
 		if (data->exit_flag == 1)
@@ -47,7 +47,7 @@ int	keys_press(int key, t_data *data)
 	else if (key == RIGHT_D || key == RIGHT_ARROW)
 		move(data, data->pos_x, data->pos_y + 1);
 	else if (key == ESC || key == 17 || key == 24)
-	{	
+	{
 		ft_printf("closing game \n");
 		data_destroyer(data);
 	}
@@ -56,28 +56,26 @@ int	keys_press(int key, t_data *data)
 
 void	game_init(t_data *data)
 {
+	int	x;
+	int	y;
+
 	data->mlx = mlx_init();
 	if (!data->mlx)
-	{
-		ft_printf("Fail at initialize game\n");
 		return (free_array(data->map, data->run_map));
-	}
-	data->m_map->width = (ft_strlen(data->run_map[0])) * 40;
-	data->m_map->height = ft_len(data->run_map) * 50;
-	data->mlx_window = mlx_new_window(data->mlx, data->m_map->width, data->m_map->height, "PACMAN");
+	x = data->height * 40;
+	y = data->width * 50;
+	data->mlx_window = mlx_new_window(data->mlx, x, y, "PACMAN");
 	if (!data->mlx_window)
 		return (free(data->mlx_window));
 	data->img = ft_calloc(1, sizeof(t_sprites));
 	if (!data->img)
 	{
-		ft_printf("fail data->img\n");
-		data_destroyer(data);
+		(data_destroyer(data));
 		return ;
 	}
 	loading(data, data->img);
 	drawing(data);
 	find_player(data);
-	mlx_hook(data->mlx_window, DestroyNotify, StructureNotifyMask, data_destroyer, &data);
 	mlx_hook(data->mlx_window, 2, 1L << 0, keys_press, data);
 	mlx_hook(data->mlx_window, X, 0, data_destroyer, data);
 	mlx_loop(data->mlx);
@@ -85,7 +83,7 @@ void	game_init(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_data *data;
+	t_data	*data;
 
 	if (!check_argv(argc, argv))
 		return (ft_printf("Error\n"), 0);

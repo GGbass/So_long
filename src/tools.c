@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:19:54 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/22 23:04:47 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/24 02:37:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,12 @@ void	find_player(t_data *data)
 int	game_conditions(t_data *data)
 {
 	int	i;
+
 	i = 0;
-	/* if (data->m_map->player == 1 && data->m_map->collect >= 1 
-		&& data->m_map->exit == 1)
-		return (1); */
 	while (data->map[i])
 	{
 		if (ft_strchr(data->map[i], 'E') || ft_strchr(data->map[i], 'C'))
-		{
-			ft_printf("Error: E or C founded\n");
 			return (0);
-		}
 		i++;
 	}
 	return (1);
@@ -86,21 +81,21 @@ int	check_items(t_data *data, char **map)
 				data->m_map->player++;
 		}
 	}
-	return (1);
+	if (data->m_map->player == 1 && data->m_map->collect >= 1
+		&& data->m_map->exit == 1)
+		return (1);
+	return (0);
 }
 
 void	flood_fill(t_data *data, int x, int y)
 {
-	if (x < 0 || x >= data->m_map->width
+	if (x < 0 || x >= data->width
 		|| data->map[x][y] == '1'
 		|| data->map[x][y] == 'X')
 		return ;
-	ft_printf("not even here x = %d y = %d\n", x, y);
 	if (data->map[x][y] == 'C')
 		data->m_map->collect--;
 	if (data->map[x][y] == 'E' && data->m_map->collect != 0)
-		return ;
-	if (!available_char(data->map[x][y]))
 		return ;
 	data->map[x][y] = 'X';
 	flood_fill(data, x + 1, y);

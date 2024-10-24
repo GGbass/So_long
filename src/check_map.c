@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:52:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/22 22:56:25 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/24 02:07:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ int	is_rectangular(char **map)
 
 int	check_map(t_data *data, char **map)
 {
-	int	x;
-	int	y;
 	int	n_items;
 
 	if (!is_rectangular(data->map) || !wall_surrounded(data->map))
@@ -73,11 +71,10 @@ int	check_map(t_data *data, char **map)
 	if (!check_items(data, map) || !check_chars(map))
 		return (data_destroyer(data), 0);
 	n_items = data->m_map->collect;
-	data->m_map->width = ft_len(map);
-	data->m_map->height = ft_strlen(map[0]);
-	x = data->m_map->width;
-	y = data->m_map->height;
-	flood_fill(data, x, y);
+	data->width = ft_len(map);
+	data->height = ft_strlen(map[0]);
+	find_player(data);
+	flood_fill(data, data->pos_x, data->pos_y);
 	if (!game_conditions(data))
 	{
 		ft_printf("Error: Unavailable game conditions\n");

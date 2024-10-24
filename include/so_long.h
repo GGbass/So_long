@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:27:52 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/22 22:48:50 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/24 02:08:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,8 @@ typedef struct s_sprites
 	void	*bg;
 }			t_sprites;
 
-
 typedef struct s_map
 {
-	int		width;
-	int		height;
 	int		x;
 	int		y;
 	int		collect;
@@ -53,6 +50,8 @@ typedef struct s_map
 
 typedef struct s_data
 {
+	int			width;
+	int			height;
 	void		*mlx;
 	void		*mlx_window;
 	int			fd;
@@ -68,7 +67,7 @@ typedef struct s_data
 	t_map		*m_map;
 }			t_data;
 
-int	check_chars(char **map);
+int		check_chars(char **map);
 int		available_char(char c);
 void	loading(t_data *data, t_sprites *img);
 int		data_destroyer(t_data *data);
@@ -83,4 +82,5 @@ void	find_player(t_data *data);
 void	update_location(t_data *data, int x, int y);
 void	drawing(t_data *data);
 int		check_argv(int argc, char **argv);
+
 #endif
