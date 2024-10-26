@@ -1,5 +1,5 @@
 /* XPM */
-static char *_c26bfcd4a054799a1515f2c7ae9af83oijfKH3yHKltMS4R[] = {
+static char *_91d5919dac94919b2d835312f1b56a8ws9yg6AwihnbvNTU[] = {
 /* columns rows colors chars-per-pixel */
 "16 16 3 1 ",
 "  c None",
@@ -9,14 +9,14 @@ static char *_c26bfcd4a054799a1515f2c7ae9af83oijfKH3yHKltMS4R[] = {
 "     XXXXXX     ",
 "   XXXXXXXXXX   ",
 "  XXXXXXXXXXXX  ",
-" XXXX..XXXXXXXX ",
-" XXXX..XXXXXXXX ",
-"XXXXXXXXXXXXXXX ",
-"XXXXXXXXXXXXXXX ",
-"XXXXXXXXXXXX    ",
-"XXXXXXXXX       ",
-"XXXXXXXXX       ",
-"XXXXXXXXXXXX    ",
+" XXXXXXXX..XXXX ",
+" XXXXXXXX..XXXX ",
+" XXXXXXXXXXXXXXX",
+" XXXXXXXXXXXXXXX",
+" XXXXXXXXXXXXXXX",
+" XXXXXXXXXXXXXXX",
+" XXXXXXXXXXXXXXX",
+" XXXXXXXXXXXXXXX",
 " XXXXXXXXXXXXXX ",
 " XXXXXXXXXXXXXX ",
 "  XXXXXXXXXXXX  ",
