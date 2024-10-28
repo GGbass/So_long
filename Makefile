@@ -37,7 +37,8 @@ SRC =	./src/check_argv.c \
 		./src/load_data.c \
 		./src/main.c \
 
-SRCB =	./srcb/check_argv_bonus.c \
+SRCB =	./srcb/move_ghost.c \
+		./srcb/check_argv_bonus.c \
 		./srcb/tools2_bonus.c \
 		./srcb/tools_bonus.c \
 		./srcb/check_map_bonus.c \

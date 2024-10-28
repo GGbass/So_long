@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:26:38 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/24 21:20:37 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/28 16:34:34 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,14 @@ void	check_collect(t_data *data, int x, int y)
 		data->run_map[data->pos_x][data->pos_y] = '0';
 	data->m_map->collect--;
 	update_location(data, x, y);
+}
+int	update(t_data *data)
+{
+	data->update++;
+	if (data->update >= 10000)
+	{
+		data->update = 0;
+		drawing(data);
+	}
+	return (0);
 }

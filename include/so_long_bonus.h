@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:10:34 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/24 15:10:34 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/28 17:17:00 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ typedef struct s_sprites
 	void	*c;
 	void	*e;
 	void	*u_e;
-	void	*p;
+	void	*p1;
+	void	*p2;
+	void	*p3;
 	void	*w;
 	void	*n;
 	void	*bg;
@@ -52,12 +54,15 @@ typedef struct s_map
 typedef struct s_data
 {
 	int			width;
+	int			update;
 	int			height;
 	void		*mlx;
 	void		*mlx_window;
 	int			pacman;
 	int			fd;
 	int			moves;
+	int			ghost_x;
+	int			ghost_y;
 	int			pos_x;
 	int			pos_y;
 	int			exit_x;
@@ -84,5 +89,9 @@ void	find_player(t_data *data);
 void	update_location(t_data *data, int x, int y);
 void	drawing(t_data *data);
 int		check_argv(int argc, char **argv);
+int		update(t_data *data);
+void	find_ghost(t_data *data);
+void	ghost_location(t_data *data, int x, int y);
+void	move_ghost(t_data *data, int x, int y);
 
 #endif

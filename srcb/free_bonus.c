@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 21:04:42 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/07 21:04:42 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/28 15:49:39 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ void	free_sprites(t_data *data)
 			mlx_destroy_image(data->mlx, data->img->e);
 		if (data->img->u_e)
 			mlx_destroy_image(data->mlx, data->img->u_e);
-		if (data->img->p)
-			mlx_destroy_image(data->mlx, data->img->p);
+		if (data->img->p1)
+			mlx_destroy_image(data->mlx, data->img->p1);
+		if (data->img->p2)
+			mlx_destroy_image(data->mlx, data->img->p2);
+		if (data->img->p3)
+			mlx_destroy_image(data->mlx, data->img->p3);
 		if (data->img->w)
 			mlx_destroy_image(data->mlx, data->img->w);
 		if (data->img->bg)

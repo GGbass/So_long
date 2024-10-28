@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:52:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/24 15:30:16 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/28 18:17:39 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	check_map(t_data *data, char **map)
 	if (!check_items(data, map) || !check_chars(map))
 		return (data_destroyer(data), 0);
 	n_items = data->m_map->collect;
-	data->width = ft_len(map);
-	data->height = ft_strlen(map[0]);
+	data->width = ft_strlen(map[0]);
+	data->height = ft_len(map);
 	find_player(data);
 	flood_fill(data, data->pos_x, data->pos_y);
 	if (!game_conditions(data))
