@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:52:48 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/28 18:23:49 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/29 00:41:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long_bonus.h"
+
+void	print_counter(t_data *data)
+{
+	char	*str;
+	char	*num;
+	int		x;
+	int		y;
+
+	x = data->width - (data->width / 2);
+	y = data->height - 200;
+	str = ft_strdup("player moves:  ");
+	num = ft_itoa(data->moves);
+	str = ft_gnlstrjoin(str, num, ft_strlen(num));
+	mlx_string_put(data->mlx, data->mlx_window, (x), (y), 0xFFFFFF, str);
+	free(str);
+	if (num)
+		free(num);
+}
 
 void	move(t_data *data, int x, int y)
 {
@@ -51,13 +69,13 @@ int	keys_press(int key, t_data *data)
 		move(data, data->pos_x, data->pos_y - 1);
 	else if (key == RIGHT_D)
 		move(data, data->pos_x, data->pos_y + 1);
-	else if (key == UP_ARROW)
+	else if (key == UP_ARROW && data->n_flag == 1)
 		move_ghost(data, data->ghost_x - 1, data->ghost_y);
-	else if (key == DOWN_ARROW)
+	else if (key == DOWN_ARROW && data->n_flag == 1)
 		move_ghost(data, data->ghost_x + 1, data->ghost_y);
-	else if (key == LEFT_ARROW)
+	else if (key == LEFT_ARROW && data->n_flag == 1)
 		move_ghost(data, data->ghost_x, data->ghost_y - 1);
-	else if (key == RIGHT_ARROW)
+	else if (key == RIGHT_ARROW && data->n_flag == 1)
 		move_ghost(data, data->ghost_x, data->ghost_y + 1);
 	else if (key == ESC)
 		(ft_printf("closing game \n"), data_destroyer(data));
@@ -72,8 +90,8 @@ void	game_init(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (free_array(data->map, data->run_map));
-	data->width = data->width * 120;
-	data->height = data->height * 200;
+	data->width = data->width * 64;
+	data->height = data->height * 64;
 	x = data->height + 25;
 	y = data->width;
 	data->mlx_window = mlx_new_window(data->mlx, y, x, "PACMAN");

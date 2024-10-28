@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:26:38 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/28 16:34:34 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/29 00:35:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	check_collect(t_data *data, int x, int y)
 	data->m_map->collect--;
 	update_location(data, x, y);
 }
+
 int	update(t_data *data)
 {
 	data->update++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_ghost.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:35:56 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/28 17:43:30 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/29 00:30:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	find_ghost(t_data *data)
 		{
 			if (data->map[i][j] == 'N')
 			{
+				data->n_flag = 1;
 				data->ghost_x = i;
 				data->ghost_y = j;
 				return ;
@@ -40,7 +41,6 @@ void	ghost_location(t_data *data, int x, int y)
 	data->ghost_x = x;
 	data->ghost_y = y;
 }
-
 
 void	move_ghost(t_data *data, int x, int y)
 {

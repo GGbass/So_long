@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:10:34 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/28 17:17:00 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/29 00:39:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_data
 	int			pacman;
 	int			fd;
 	int			moves;
+	int			n_flag;
 	int			ghost_x;
 	int			ghost_y;
 	int			pos_x;
@@ -93,5 +94,7 @@ int		update(t_data *data);
 void	find_ghost(t_data *data);
 void	ghost_location(t_data *data, int x, int y);
 void	move_ghost(t_data *data, int x, int y);
+void	put_image(t_data *data, char flag, int j, int i);
+void	print_counter(t_data *data);
 
 #endif

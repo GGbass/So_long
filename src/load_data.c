@@ -18,20 +18,20 @@ void	loading(t_data *data, t_sprites *img)
 	int	h;
 
 	img->w = mlx_xpm_file_to_image(data->mlx, "img/wall.xpm", &w, &h);
-		if (!img->w)
-			(printf("Error loading walls"), (data_destroyer(data)));
+	if (!img->w)
+		(printf("Error loading walls"), (data_destroyer(data)));
 	img->bg = mlx_xpm_file_to_image(data->mlx, "img/black.xpm", &w, &h);
-		if (!img->bg)
-			(printf("Error loading background"), (data_destroyer(data)));
+	if (!img->bg)
+		(printf("Error loading background"), (data_destroyer(data)));
 	img->c = mlx_xpm_file_to_image(data->mlx, "img/dot.xpm", &w, &h);
-		if (!img->c)
-			(printf("Error loading collectibles"), (data_destroyer(data)));
+	if (!img->c)
+		(printf("Error loading collectibles"), (data_destroyer(data)));
 	img->p = mlx_xpm_file_to_image(data->mlx, "img/2.xpm", &w, &h);
-		if (!img->p)
-			(printf("Error loading player"), (data_destroyer(data)));
+	if (!img->p)
+		(printf("Error loading player"), (data_destroyer(data)));
 	img->e = mlx_xpm_file_to_image(data->mlx, "img/apple.xpm", &w, &h);
-		if (!img->e)
-			(printf("Error loading exit"), (data_destroyer(data)));
+	if (!img->e)
+		(printf("Error loading exit"), (data_destroyer(data)));
 }
 
 static void	put_image(t_data *data, char flag, int j, int i)
