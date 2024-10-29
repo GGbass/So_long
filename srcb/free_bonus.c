@@ -6,7 +6,7 @@
 /*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 21:04:42 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/28 15:49:39 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/29 23:03:02 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	free_sprites(t_data *data)
 			mlx_destroy_image(data->mlx, data->img->c);
 		if (data->img->e)
 			mlx_destroy_image(data->mlx, data->img->e);
-		if (data->img->u_e)
-			mlx_destroy_image(data->mlx, data->img->u_e);
 		if (data->img->p1)
 			mlx_destroy_image(data->mlx, data->img->p1);
 		if (data->img->p2)
@@ -34,8 +32,6 @@ void	free_sprites(t_data *data)
 			mlx_destroy_image(data->mlx, data->img->bg);
 		if (data->img->n)
 			mlx_destroy_image(data->mlx, data->img->n);
-		if (data->mlx)
-			mlx_destroy_display(data->mlx);
 		free(data->img);
 	}
 	return ;
@@ -62,8 +58,11 @@ int	data_destroyer(t_data *data)
 	free_array(data->map, data->run_map);
 	free_sprites(data);
 	free(data->m_map);
+	if (data->fd)
+		close(data->fd);
 	if (data->mlx_window)
 		mlx_destroy_window(data->mlx, data->mlx_window);
-	free(data->mlx);
+	if (data->mlx)
+		mlx_destroy_display(data->mlx);
 	exit (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:10:34 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/29 00:39:43 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/29 23:00:22 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_sprites
 {
 	void	*c;
 	void	*e;
-	void	*u_e;
 	void	*p1;
 	void	*p2;
 	void	*p3;

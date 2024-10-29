@@ -86,15 +86,16 @@ show_progress2:
 
 clean:
 	rm -f  $(NAME)
+	rm -f $(NAMEB)
+	rm -f so_long_bonus
 	@make fclean -s -C libft
 	@rm -f libmlx_Linux.a
 	@make clean -C mlx
-	rm -f 
-	rm -f $(NAMEB)
 
 fclean: clean
 	rm -f  $(OBJ)
 	rm -f $(OBJB)
+	rm -f so_long_bonus
 	@make fclean -s -C libft
 	@rm -f libmlx_Linux.a
 	@rm -f libmlx.a
@@ -102,7 +103,6 @@ fclean: clean
 re: fclean all
 
 re_bonus: fclean bonus
-	rm -f $(NAMEB)
 
 git:
 	git add .

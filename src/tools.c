@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:19:54 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/24 02:37:24 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/29 16:37:45 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int	available_char(char c)
 {
 	char	*available;
 
-	available = "01PEC\r";
+	available = "01PEC";
 	if (ft_strchr(available, c) == NULL)
-		return (0);
+		return (ft_printf("Invalid char \n"), 0);
 	return (1);
 }
 

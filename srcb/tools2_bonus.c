@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:26:38 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/29 00:35:24 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/29 22:09:29 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	check_collect(t_data *data, int x, int y)
 	else
 		data->run_map[data->pos_x][data->pos_y] = '0';
 	data->m_map->collect--;
+	ft_printf("items remining %d\n", data->m_map->collect);
 	update_location(data, x, y);
 }
 

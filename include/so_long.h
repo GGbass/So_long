@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:27:52 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/24 02:08:50 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/29 23:13:34 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ typedef struct s_sprites
 {
 	void	*c;
 	void	*e;
-	void	*u_e;
 	void	*p;
 	void	*w;
 	void	*bg;
+	void	*mlx;
+	void	*mlx_window;
 }			t_sprites;
 
 typedef struct s_map
@@ -52,8 +53,6 @@ typedef struct s_data
 {
 	int			width;
 	int			height;
-	void		*mlx;
-	void		*mlx_window;
 	int			fd;
 	int			moves;
 	int			pos_x;

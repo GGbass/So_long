@@ -6,7 +6,7 @@
 /*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:05:27 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/22 22:38:19 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/29 21:54:06 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,16 @@ int	check_format(char *file)
 
 	len = ft_strlen(file);
 	if (len < 5 || ft_strncmp(&file[len - 4], ".ber", 4))
+	{
+		ft_printf("Error: Invalid file format\n");
 		return (0);
+	}
 	ext = ft_strchr(file, '.');
 	if (ext == NULL)
+	{
+		ft_printf("Error: Invalid file format\n");
 		return (0);
+	}
 	if (ft_strncmp(ext, ".ber", 0))
 		return (1);
 	return (1);
@@ -31,8 +37,14 @@ int	check_format(char *file)
 int	check_argv(int argc, char **argv)
 {
 	if (argc != 2 || !argv[1])
+	{
+		ft_printf("Error: Invalid arguments\n");
 		return (0);
+	}
 	if (!check_format(argv[1]) || open(argv[1], O_RDONLY) < 0)
+	{
+		ft_printf("Error: Invalid file or format\n");
 		return (0);
+	}
 	return (1);
 }

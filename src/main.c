@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:52:48 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/24 02:54:34 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/29 23:05:52 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	keys_press(int key, t_data *data)
 		move(data, data->pos_x, data->pos_y - 1);
 	else if (key == RIGHT_D || key == RIGHT_ARROW)
 		move(data, data->pos_x, data->pos_y + 1);
-	else if (key == ESC || key == 17 || key == 24)
+	else if (key == ESC)
 	{
 		ft_printf("closing game \n");
 		data_destroyer(data);
@@ -59,26 +59,25 @@ void	game_init(t_data *data)
 	int	x;
 	int	y;
 
-	data->mlx = mlx_init();
-	if (!data->mlx)
-		return (free_array(data->map, data->run_map));
-	x = data->height * 40;
-	y = data->width * 50;
-	data->mlx_window = mlx_new_window(data->mlx, x, y, "PACMAN");
-	if (!data->mlx_window)
-		return (free(data->mlx_window));
+	data->img->mlx = mlx_init();
+	if (!data->img->mlx)
+		data_destroyer(data);
+	data->width = data->width * 64;
+	data->height = data->height * 64;
+	x = data->height + 25;
+	y = data->width;
+	data->img->mlx_window = mlx_new_window(data->img->mlx, y, x, "PACMAN");
+	if (!data->img->mlx_window)
+		data_destroyer(data);
 	data->img = ft_calloc(1, sizeof(t_sprites));
 	if (!data->img)
-	{
-		(data_destroyer(data));
-		return ;
-	}
+		data_destroyer(data);
 	loading(data, data->img);
 	drawing(data);
 	find_player(data);
-	mlx_hook(data->mlx_window, 2, 1L << 0, keys_press, data);
-	mlx_hook(data->mlx_window, X, 0, data_destroyer, data);
-	mlx_loop(data->mlx);
+	mlx_hook(data->img->mlx_window, 2, 1L << 0, keys_press, data);
+	mlx_hook(data->img->mlx_window, X, 0, data_destroyer, data);
+	mlx_loop(data->img->mlx);
 }
 
 int	main(int argc, char **argv)

@@ -17,40 +17,40 @@ void	loading(t_data *data, t_sprites *img)
 	int	w;
 	int	h;
 
-	img->w = mlx_xpm_file_to_image(data->mlx, "img/wall.xpm", &w, &h);
+	img->w = mlx_xpm_file_to_image(data->img->mlx, "img/wall22.xpm", &w, &h);
 	if (!img->w)
-		(printf("Error loading walls"), (data_destroyer(data)));
-	img->bg = mlx_xpm_file_to_image(data->mlx, "img/black.xpm", &w, &h);
+		(ft_printf("Error loading walls\n"), (data_destroyer(data)));
+	img->bg = mlx_xpm_file_to_image(data->img->mlx, "img/black22.xpm", &w, &h);
 	if (!img->bg)
-		(printf("Error loading background"), (data_destroyer(data)));
-	img->c = mlx_xpm_file_to_image(data->mlx, "img/dot.xpm", &w, &h);
+		(ft_printf("Error loading background\n"), (data_destroyer(data)));
+	img->c = mlx_xpm_file_to_image(data->img->mlx, "img/dot22.xpm", &w, &h);
 	if (!img->c)
-		(printf("Error loading collectibles"), (data_destroyer(data)));
-	img->p = mlx_xpm_file_to_image(data->mlx, "img/2.xpm", &w, &h);
+		(ft_printf("Error loading collectibles"), (data_destroyer(data)));
+	img->p = mlx_xpm_file_to_image(data->img->mlx, "img/222.xpm", &w, &h);
 	if (!img->p)
-		(printf("Error loading player"), (data_destroyer(data)));
-	img->e = mlx_xpm_file_to_image(data->mlx, "img/apple.xpm", &w, &h);
+		(ft_printf("Error loading player"), (data_destroyer(data)));
+	img->e = mlx_xpm_file_to_image(data->img->mlx, "img/apple22.xpm", &w, &h);
 	if (!img->e)
-		(printf("Error loading exit"), (data_destroyer(data)));
+		(ft_printf("Error loading exit"), (data_destroyer(data)));
 }
 
 static void	put_image(t_data *data, char flag, int j, int i)
 {
 	if (flag == '1')
-		mlx_put_image_to_window(data->mlx, data->mlx_window, \
-			data->img->w, j * 40, i * 50);
+		mlx_put_image_to_window(data->img->mlx, data->img->mlx_window, \
+			data->img->w, j * 64, i * 64);
 	else if (flag == '0')
-		mlx_put_image_to_window(data->mlx, data->mlx_window, \
-			data->img->bg, j * 40, i * 50);
+		mlx_put_image_to_window(data->img->mlx, data->img->mlx_window, \
+			data->img->bg, j * 64, i * 64);
 	else if (flag == 'C')
-		mlx_put_image_to_window(data->mlx, data->mlx_window, \
-			data->img->c, j * 40, i * 50);
+		mlx_put_image_to_window(data->img->mlx, data->img->mlx_window, \
+			data->img->c, j * 64, i * 64);
 	else if (flag == 'P')
-		mlx_put_image_to_window(data->mlx, data->mlx_window, \
-			data->img->p, j * 40, i * 50);
+		mlx_put_image_to_window(data->img->mlx, data->img->mlx_window, \
+			data->img->p, j * 64, i * 64);
 	else if (flag == 'E')
-		mlx_put_image_to_window(data->mlx, data->mlx_window, \
-			data->img->e, j * 40, i * 50);
+		mlx_put_image_to_window(data->img->mlx, data->img->mlx_window, \
+			data->img->e, j * 64, i * 64);
 }
 
 void	drawing(t_data *data)

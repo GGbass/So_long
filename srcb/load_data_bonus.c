@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_data_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 18:16:00 by y marvin          #+#    #+#             */
-/*   Updated: 2024/10/29 00:40:02 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/29 21:47:15 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	pacman_animation(t_data *data, t_sprites *img, int w, int h)
 {
 	img->p1 = mlx_xpm_file_to_image(data->mlx, "img/111.xpm", &w, &h);
 	if (!img->p1)
-		(printf("Error loading player 1 \n"), (data_destroyer(data)));
+		(ft_printf("Error loading player 1 \n"), (data_destroyer(data)));
 	img->p2 = mlx_xpm_file_to_image(data->mlx, "img/222.xpm", &w, &h);
 	if (!img->p2)
-		(printf("Error loading player 2 \n"), (data_destroyer(data)));
+		(ft_printf("Error loading player 2 \n"), (data_destroyer(data)));
 	img->p3 = mlx_xpm_file_to_image(data->mlx, "img/333.xpm", &w, &h);
 	if (!img->p3)
-		(printf("Error loading player 3 \n"), (data_destroyer(data)));
+		(ft_printf("Error loading player 3 \n"), (data_destroyer(data)));
 }
 
 void	loading(t_data *data, t_sprites *img)
@@ -34,20 +34,20 @@ void	loading(t_data *data, t_sprites *img)
 	h = data->height;
 	img->w = mlx_xpm_file_to_image(data->mlx, "img/wall22.xpm", &w, &h);
 	if (!img->w)
-		(printf("Error loading walls"), (data_destroyer(data)));
+		(ft_printf("Error loading walls"), (data_destroyer(data)));
 	img->bg = mlx_xpm_file_to_image(data->mlx, "img/black22.xpm", &w, &h);
 	if (!img->bg)
-		(printf("Error loading background"), (data_destroyer(data)));
+		(ft_printf("Error loading background"), (data_destroyer(data)));
 	img->c = mlx_xpm_file_to_image(data->mlx, "img/dot22.xpm", &w, &h);
 	if (!img->c)
-		(printf("Error loading collectibles"), (data_destroyer(data)));
+		(ft_printf("Error loading collectibles"), (data_destroyer(data)));
 	pacman_animation(data, img, w, h);
 	img->e = mlx_xpm_file_to_image(data->mlx, "img/apple22.xpm", &w, &h);
 	if (!img->e)
-		(printf("Error loading exit"), (data_destroyer(data)));
+		(ft_printf("Error loading exit"), (data_destroyer(data)));
 	img->n = mlx_xpm_file_to_image(data->mlx, "img/clyde22.xpm", &w, &h);
 	if (!img->n)
-		(printf("Error loading enemy"), (data_destroyer(data)));
+		(ft_printf("Error loading enemy"), (data_destroyer(data)));
 }
 
 void	put_pacman(t_data *data, int j, int i)

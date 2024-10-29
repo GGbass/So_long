@@ -1,3 +1,0 @@
-check for unavailable map
-when map has just 1111111
-when map don't have collect items ?

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:52:48 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/29 00:41:49 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/29 23:01:49 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,17 +89,17 @@ void	game_init(t_data *data)
 
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		return (free_array(data->map, data->run_map));
+		data_destroyer(data);
 	data->width = data->width * 64;
 	data->height = data->height * 64;
 	x = data->height + 25;
 	y = data->width;
 	data->mlx_window = mlx_new_window(data->mlx, y, x, "PACMAN");
 	if (!data->mlx_window)
-		return (free(data->mlx_window));
+		data_destroyer(data);
 	data->img = ft_calloc(1, sizeof(t_sprites));
 	if (!data->img)
-		(data_destroyer(data));
+		data_destroyer(data);
 	data->pacman = 2;
 	loading(data, data->img);
 	drawing(data);

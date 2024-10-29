@@ -6,7 +6,7 @@
 /*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:52:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/28 18:17:39 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/29 21:59:38 by gongarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ int	wall_surrounded(char **map)
 		}
 		if (i > 0 && i < ft_len(map))
 		{
-			while (map[i][j] != '\0' && map[i][j] != '1')
-			{
-				if (!available_char(map[i][j++]))
+			while (map[i][j] != '\0')
+				if (!available_char(map[i][j++]) || map[i][0] != '1'
+					|| map[i][ft_strlen(map[i]) - 1] != '1')
 					return (0);
-			}
 		}
 	}
 	return (1);
@@ -69,7 +68,10 @@ int	check_map(t_data *data, char **map)
 		return (data_destroyer(data), 0);
 	}
 	if (!check_items(data, map) || !check_chars(map))
+	{
+		ft_printf("Error checking items or chars\n");
 		return (data_destroyer(data), 0);
+	}
 	n_items = data->m_map->collect;
 	data->width = ft_strlen(map[0]);
 	data->height = ft_len(map);
@@ -102,9 +104,9 @@ int	read_map(t_data *data)
 	data->map = ft_split(str_map, '\n');
 	data->run_map = ft_split(str_map, '\n');
 	free(str_map);
-	if ((!data->map && !data->run_map) || ft_len(data->map) > 32)
-		return (free_array(data->map, data->run_map), 0);
-	if (!check_map(data, data->map) || ft_strlen(data->map[0]) > 80)
+	if ((!data->map && !data->run_map) || ft_len(data->map) > 20)
+		(ft_printf("NULL or wrong size map\n"), data_destroyer(data));
+	if (!check_map(data, data->map) || ft_strlen(data->map[0]) > 40)
 	{
 		ft_printf("Error cheking map\n");
 		data_destroyer(data);
