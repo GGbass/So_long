@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:26:38 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/29 22:09:29 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/30 01:59:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	update_location(t_data *data, int x, int y)
 
 void	check_exit(t_data *data, int x, int y)
 {
-	ft_printf("items remining %d\n", data->m_map->collect);
+	ft_printf("Items Remining: %d\n", data->m_map->collect);
 	if (data->m_map->collect == 0)
 	{
 		ft_printf("moves %d\n", data->moves);
@@ -53,7 +53,7 @@ void	check_exit(t_data *data, int x, int y)
 	}
 	else if (data->m_map->collect > 0)
 	{
-		ft_printf("You need to collect all items\n");
+		ft_printf("Still %d Items Remining\n", data->m_map->collect);
 		data->run_map[x][y] = 'P';
 		data->run_map[data->pos_x][data->pos_y] = '0';
 		data->exit_flag = 1;

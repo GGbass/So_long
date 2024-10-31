@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_argv_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:05:27 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/29 21:53:28 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/30 01:49:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ int	check_argv(int argc, char **argv)
 		ft_printf("Error: Invalid arguments\n");
 		return (0);
 	}
-	if (!check_format(argv[1]) || open(argv[1], O_RDONLY) < 0)
+	if (!check_format(argv[1]))
+		return (0);
+	if (open(argv[1], O_RDONLY) < 0)
 	{
-		ft_printf("Error: Invalid file or format\n");
+		ft_printf("Error: Invalid file\n");
 		return (0);
 	}
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:52:48 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/29 23:01:49 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/30 01:51:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_counter(t_data *data)
 
 	x = data->width - (data->width / 2);
 	y = data->height - 200;
-	str = ft_strdup("player moves:  ");
+	str = ft_strdup("Player Moves:  ");
 	num = ft_itoa(data->moves);
 	str = ft_gnlstrjoin(str, num, ft_strlen(num));
 	mlx_string_put(data->mlx, data->mlx_window, (x), (y), 0xFFFFFF, str);
@@ -36,7 +36,7 @@ void	move(t_data *data, int x, int y)
 		return ;
 	else if (data->run_map[x][y] == 'N')
 	{
-		ft_printf("You lose\n");
+		ft_printf("You Lose!\n");
 		data_destroyer(data);
 	}
 	else if (data->run_map[x][y] == 'C')
@@ -56,7 +56,7 @@ void	move(t_data *data, int x, int y)
 		update_location(data, x, y);
 	}
 	drawing(data);
-	ft_printf("Player moves %d\n", data->moves);
+	ft_printf("Player Moves%d\n", data->moves);
 }
 
 int	keys_press(int key, t_data *data)
@@ -78,7 +78,7 @@ int	keys_press(int key, t_data *data)
 	else if (key == RIGHT_ARROW && data->n_flag == 1)
 		move_ghost(data, data->ghost_x, data->ghost_y + 1);
 	else if (key == ESC)
-		(ft_printf("closing game \n"), data_destroyer(data));
+		(ft_printf("Closing Game\n"), data_destroyer(data));
 	return (1);
 }
 
@@ -115,7 +115,7 @@ int	main(int argc, char **argv)
 	t_data	*data;
 
 	if (!check_argv(argc, argv))
-		return (ft_printf("Error\n"), 0);
+		return (0);
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		return (0);

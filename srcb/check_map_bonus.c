@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:52:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/29 21:59:38 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/30 01:55:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ int	check_map(t_data *data, char **map)
 
 	if (!is_rectangular(data->map) || !wall_surrounded(data->map))
 	{
-		ft_printf("Error it's not rectangular or wall surrounded\n");
+		ft_printf("Error: it's not rectangular or wall surrounded\n");
 		return (data_destroyer(data), 0);
 	}
 	if (!check_items(data, map) || !check_chars(map))
 	{
-		ft_printf("Error checking items or chars\n");
+		ft_printf("Error: Checking Items or Chars\n");
 		return (data_destroyer(data), 0);
 	}
 	n_items = data->m_map->collect;
@@ -79,7 +79,7 @@ int	check_map(t_data *data, char **map)
 	flood_fill(data, data->pos_x, data->pos_y);
 	if (!game_conditions(data))
 	{
-		ft_printf("Error: Unavailable game conditions\n");
+		ft_printf("Error: Unavailable Game Conditions\n");
 		return (data_destroyer(data), 0);
 	}
 	data->m_map->collect = n_items;
@@ -105,10 +105,10 @@ int	read_map(t_data *data)
 	data->run_map = ft_split(str_map, '\n');
 	free(str_map);
 	if ((!data->map && !data->run_map) || ft_len(data->map) > 20)
-		(ft_printf("NULL or wrong size map\n"), data_destroyer(data));
+		(ft_printf("NULL or Wrong size map\n"), data_destroyer(data));
 	if (!check_map(data, data->map) || ft_strlen(data->map[0]) > 40)
 	{
-		ft_printf("Error cheking map\n");
+		ft_printf("Error: Cheking Map\n");
 		data_destroyer(data);
 	}
 	return (1);
@@ -124,7 +124,7 @@ int	check(t_data *data, int argc, char **argv)
 	if (argv[1])
 		data->fd = open(argv[1], O_RDONLY);
 	if (data->fd < 0)
-		return (ft_putstr_fd("Error invalid fd\n", 2), 0);
+		return (ft_putstr_fd("Error: Invalid File Descriptor\n", 2), 0);
 	if (!read_map(data))
 		return (0);
 	return (1);

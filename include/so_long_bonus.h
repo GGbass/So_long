@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:10:34 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/29 23:00:22 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/31 02:03:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_data
 	void		*mlx_window;
 	int			pacman;
 	int			fd;
+	int			check;
 	int			moves;
 	int			n_flag;
 	int			ghost_x;

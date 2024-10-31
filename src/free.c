@@ -17,15 +17,15 @@ void	free_sprites(t_data *data)
 	if (data->img)
 	{
 		if (data->img->c)
-			mlx_destroy_image(data->img->mlx, data->img->c);
+			mlx_destroy_image(data->mlx, data->img->c);
 		if (data->img->e)
-			mlx_destroy_image(data->img->mlx, data->img->e);
+			mlx_destroy_image(data->mlx, data->img->e);
 		if (data->img->p)
-			mlx_destroy_image(data->img->mlx, data->img->p);
+			mlx_destroy_image(data->mlx, data->img->p);
 		if (data->img->w)
-			mlx_destroy_image(data->img->mlx, data->img->w);
+			mlx_destroy_image(data->mlx, data->img->w);
 		if (data->img->bg)
-			mlx_destroy_image(data->img->mlx, data->img->bg);
+			mlx_destroy_image(data->mlx, data->img->bg);
 	}
 }
 
@@ -49,12 +49,12 @@ int	data_destroyer(t_data *data)
 	free_sprites(data);
 	if (data->img)
 	{
-		if (data->img->mlx_window)
-			mlx_destroy_window(data->img->mlx, data->img->mlx_window);
-		if (data->img->mlx)
+		if (data->mlx_window)
+			mlx_destroy_window(data->mlx, data->mlx_window);
+		if (data->mlx)
 		{
-			mlx_destroy_display(data->img->mlx);
-			free(data->img->mlx);
+			mlx_destroy_display(data->mlx);
+			free(data->mlx);
 		}
 		free(data->img);
 	}
@@ -64,9 +64,5 @@ int	data_destroyer(t_data *data)
 		free(data->m_map);
 	if (data->fd)
 		close(data->fd);
-	// if (data)
-	// 	free(data);
-	ft_printf("sale de free_sprites\n");
 	exit (0);
-	//return (0);
 }

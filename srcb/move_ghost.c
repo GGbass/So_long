@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:35:56 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/29 00:30:07 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/30 01:56:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	move_ghost(t_data *data, int x, int y)
 		return ;
 	else if (data->run_map[x][y] == 'P')
 	{
-		ft_printf("Ghost win !\n");
+		ft_printf("Ghost Won !\n");
 		data_destroyer(data);
 	}
 	else if (data->run_map[x][y] == '0')

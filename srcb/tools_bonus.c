@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gongarci <gongarci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:19:54 by gongarci          #+#    #+#             */
-/*   Updated: 2024/10/29 21:56:52 by gongarci         ###   ########.fr       */
+/*   Updated: 2024/10/31 02:05:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	game_conditions(t_data *data)
 	i = 0;
 	while (data->map[i])
 	{
-		if (ft_strchr(data->map[i], 'E') || ft_strchr(data->map[i], 'C'))
+		if ((ft_strchr(data->map[i], 'E') && data->check == 0)
+			|| ft_strchr(data->map[i], 'C'))
 			return (0);
 		i++;
 	}
@@ -97,7 +98,10 @@ void	flood_fill(t_data *data, int x, int y)
 	if (data->map[x][y] == 'C')
 		data->m_map->collect--;
 	if (data->map[x][y] == 'E' && data->m_map->collect != 0)
+	{
+		data->check = 1;
 		return ;
+	}
 	data->map[x][y] = 'X';
 	flood_fill(data, x + 1, y);
 	flood_fill(data, x - 1, y);
